@@ -434,16 +434,30 @@
     </div>
 
     <script>
+      //Копирайт показывающий текущий год
       let year = new Date().getFullYear();
       let copy = document.getElementById("copy");
       copy.innerHTML = `Copyright &copy; ${year}`;
 
+      //Открытие меню
       let menuBtn = document.querySelector(".menu-mobile__btn");
       let menuOpen = document.querySelector(".menu-mobile");
 
       menuBtn.addEventListener("click", () => {
         menuBtn.classList.toggle("btn--click");
         menuOpen.classList.toggle("menu--open");
+      });
+
+      // Добавляем обработчик клика на документ
+      document.addEventListener("click", function (event) {
+        // Проверяем, был ли клик на меню или его дочерних элементах
+        const isClickInsideMenu = menuBtn.contains(event.target);
+
+        // Если клик был снаружи меню, то скрываем его
+        if (!isClickInsideMenu) {
+          menuBtn.classList.remove("btn--click");
+          menuOpen.classList.remove("menu--open");
+        }
       });
     </script>
   </body>
